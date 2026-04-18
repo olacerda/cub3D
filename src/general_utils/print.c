@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otlacerd <otlacerd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olacerda <olacerda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 18:20:12 by otlacerd          #+#    #+#             */
-/*   Updated: 2026/04/17 20:33:49 by otlacerd         ###   ########.fr       */
+/*   Updated: 2026/04/18 03:36:51 by olacerda         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "utils.h"
 
@@ -48,4 +48,19 @@ int	put_error(char *message)
 	write(STDERR_FILENO, message, size);
 	write(STDERR_FILENO, "\n", 1);
 	return (1);
+}
+
+int	print_map(char **map)
+{
+	int	line;
+
+	if (!map)
+		return (0);
+	line = 0;
+	while (map[line])
+	{
+		put_message(map[line], STDOUT_FILENO, true);
+		line++;
+	}
+	return (0);
 }

@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: otlacerd <otlacerd@student.42.fr>          +#+  +:+       +#+         #
+#    By: olacerda <olacerda@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/13 19:46:45 by otlacerd          #+#    #+#              #
-#    Updated: 2026/04/17 20:30:33 by otlacerd         ###   ########.fr        #
+#    Updated: 2026/04/18 05:57:59 by olacerda         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 NAME = cub3D
 
@@ -35,6 +35,7 @@ all: $(NAME)
 SRCS = cub3D.c \
 		src/parse/data_struct.c \
 		src/parse/parse.c \
+		src/parse/parse_utils.c \
 		src/general_utils/allocation_free.c \
 		src/general_utils/allocation.c \
 		src/general_utils/get_next_line.c \
@@ -45,7 +46,7 @@ SRCS = cub3D.c \
 
 OBJS = $(patsubst %.c,$(BUILD_DIR)/%.o,$(SRCS))
 
-$(NAME): external $(OBJS)
+$(NAME): $(OBJS)
 	@if [ -d "$(LIBFT_DIR)" ]; then \
 		$(CC) $(CFLAGS) $(OBJS) -L$(MLX_DIR) -lmlx -L$(LIBFT_DIR) -lft -lXext -lX11 -lm -o $(NAME); \
 	else \
@@ -56,17 +57,19 @@ $(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-external:
+mlx:
 	@if [ ! -d "$(MLX_DIR)" ]; then \
 		git clone https://github.com/42paris/minilibx-linux.git $(MLX_DIR); \
 	fi
 	@$(MAKE) -C $(MLX_DIR)
 	@cp -f $(MLX_DIR)/mlx.h ./includes/
+
+libft:
 	@if [ -d "$(LIBFT_DIR)" ]; then \
 		$(MAKE) -C $(LIBFT_DIR); \
-	fi
+	fi	
 
-externalre: fclean external
+externalre: fclean mlx
 
 clean:
 	@rm -f $(OBJS)
@@ -75,8 +78,9 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -Rf $(MLX_DIR)
+	@rm -Rf $(LIBFT_DIR)
 
-re: fclean all
+re: fclean mlx libft all
 
 val: $(NAME)
 	$(VALGRIND) ./$(NAME)
@@ -93,4 +97,4 @@ re3:
 	$(MAKE) CC=$(GCC) CFLAGS="$(GFLAGS)" all
 	$(VALGRIND) ./$(NAME)
 
-.PHONY: all clean fclean re external externalre val valchild val3 re3
+.PHONY: all clean fclean re mlx externalre val valchild val3 re3

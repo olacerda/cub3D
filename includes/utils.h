@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otlacerd <otlacerd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olacerda <olacerda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 22:23:52 by otlacerd          #+#    #+#             */
-/*   Updated: 2026/04/17 20:35:54 by otlacerd         ###   ########.fr       */
+/*   Updated: 2026/04/18 03:36:24 by olacerda         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef UTILS_H
 # define UTILS_H
@@ -28,9 +28,9 @@ int		string_cat(char *string1, char *string2); // Concatenates a string2 in stri
 int		string_compare(char *string1, char *string2, int until); //'Until' is optional, send 0 for std.
 int		memory_zero(void *memory, t_ul size, t_ul type_size); // Sets every byte to zero
 
-//=====- get_next_line.c -======================================================
-char	*get_next_line(int fd); // Returns next line of file pointed by 'fd'
-char	*liner(char *line, t_gnl *x, int *all_end, char *buffer); //Helper of get_next_line
+//=====- get_next_line_no_breakline.c -======================================================
+char	*get_next_line_no_breakline(int fd); // Returns next line of file pointed by 'fd'
+char	*liner(char *line, t_gnl *x, int *all_end, char *buffer); //Helper of get_next_line_no_breakline
 
 //=====- string_basic.c -=======================================================
 int		string_length(char *string); // Returns the length of the string passed
@@ -38,6 +38,7 @@ int		string_length(char *string); // Returns the length of the string passed
 //=====- print.c -==============================================================
 int		put_error(char *message);//Writes the string in stderr, and writes '\n'
 int		put_message(char *message, int fd, int break_line); //Writes the string in the specific file descriptor. Send "break_line" to 'true' to end with '\n'
+int     print_map(char **map); // Print an array[string]'s "map";
 
 //=====- data.c -===============================================================
 t_all	*init_structs();//Mallocs and sets '0' all structs of the project

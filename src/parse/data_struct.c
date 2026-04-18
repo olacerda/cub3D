@@ -43,7 +43,7 @@ int	create_map(t_map *maps)
 	maps->lines = get_map_lines(maps->adress);
 	fd = open(maps->adress, O_RDONLY);
 	if (fd < 0)
-		return (end_program("Map not found", 1), 0);
+		return (end_program("Map not found, invalid fd in create_map", 1), 0);
 	maps->map = malloc((maps->lines + 1) * sizeof(char *));
 	if (!maps->map)
 		return (end_program("Failed allocation in create_map", 1), 0);
@@ -51,7 +51,7 @@ int	create_map(t_map *maps)
 	line = 0;
 	while (line < maps->lines)
 	{
-		maps->map[line] = get_next_line(fd);
+		maps->map[line] = get_next_line_no_breakline(fd);
 		if (!maps->map[line])
 			break ;
 		line++;
@@ -69,12 +69,12 @@ int	get_map_lines(char *map_name)
 		return (0);
 	fd = open(map_name, O_RDONLY);
 	if (fd < 0)
-		return (end_program("Wrong fd in get_map_lines", 1), 0);
+		return (end_program("Map not found, invalid fd in get_map_lines", 1), 0);
 	count = 0;
 	string = " ";
 	while (string != NULL)
 	{
-		string = get_next_line(fd);
+		string = get_next_line_no_breakline(fd);
 		if (!string)
 			break ;
 		count++;

@@ -16,6 +16,12 @@
 
 //=====- parse.c -==============================================================
 int		parse(t_all *all); //Do the whole parse of the project
+int     check_map_type(char *map_name);
+int     check_close_walls(char **map);
+
+//=====- parse_utils.c -========================================================
+int     is_valid(char xar); //Verify if it is one of the permitted characters
+int     check_axis(char **map, int *line, int *column, int *axis);
 
 //=====- data_structure.c -=====================================================
 int		create_map(t_map *maps);

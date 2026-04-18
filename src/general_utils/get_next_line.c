@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_no_breakline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otlacerd <otlacerd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olacerda <olacerda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 23:56:29 by otlacerd          #+#    #+#             */
-/*   Updated: 2026/04/17 19:35:12 by otlacerd         ###   ########.fr       */
+/*   Updated: 2026/04/18 03:36:03 by olacerda         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "utils.h"
 
@@ -24,20 +24,21 @@ char	*liner(char *line, t_gnl *x, int *all_end, char *buffer)
 		x->end++;
 		(*all_end)++;
 	}
-	new_line = malloc((*all_end + 1 + buffer[x->end] == '\n') * sizeof(char));
+	new_line = malloc((*all_end + 1) * sizeof(char));
 	if (!new_line)
 		return (free(line), end_program("Failed allocation in liner", 1), NULL);
 	index = -1;
 	while (++index < (*all_end - x->end) && line)
 		new_line[index] = line[index];
-	while ((x->start <= x->end) && (x->start < x->readbytes))
+	while ((x->start < x->end) && (x->start < x->readbytes))
 		new_line[index++] = buffer[(x->start)++];
 	new_line[index] = '\0';
 	free(line);
+	x->start += (buffer[x->start] == '\n');
 	return (new_line);
 }
 
-char *get_next_line(int fd)
+char *get_next_line_no_breakline(int fd)
 {
 	static t_gnl	x[FD_SETSIZE];
 	char			(buff[BUFFER_SIZE + 1])[FD_SETSIZE];
@@ -87,7 +88,7 @@ char *get_next_line(int fd)
 // 		index = 0;
 // 		while (index < count)
 // 		{
-// 			line = get_next_line(fd[index]);
+// 			line = get_next_line_no_breakline(fd[index]);
 // 			if (!line && index2 == 4)
 // 				break;
 // 			printf("%s", line);

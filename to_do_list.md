@@ -1,21 +1,21 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    to_do_list                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: otlacerd <otlacerd@student.42.fr>          +#+  +:+       +#+         #
+#    By: olacerda <olacerda@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/15 18:16:12 by otlacerd          #+#    #+#              #
-#    Updated: 2026/04/17 17:36:38 by otlacerd         ###   ########.fr        #
+#    Updated: 2026/04/18 03:55:23 by olacerda         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
-Project start time: 13/04/2026
+Project start time: 13/04/2026 (Gustavo "14")
 
-Finish time: 15/05/2026
+Finish time: 12/05/2026 ~~ 15/05/2026
 
 
-0. Setup base ------------------------------------------------------------------
+<!-- 0. Setup base ------------------------------------------------------------------
 
 Ler argumento .cub
 Validar extensão .cub
@@ -24,7 +24,7 @@ Abrir ficheiro (error se falhar)
 1. Leitura do ficheiro ---------------------------------------------------------
 
 Ler linha a linha (read / get_next_line)
-Guardar tudo (array de strings)
+Guardar tudo (array de strings) -->
 
 2. Separação de secções --------------------------------------------------------
 
@@ -104,9 +104,12 @@ Para cada 0 ou player:
 não pode tocar:
 borda
 espaço ' '
-Estratégia:
+Estratégia: 
 flood fill ou
 check vizinhos (4 direções)
+
+estrategia pra verificar "fechado por 1"
+--> verificar por 'linha' depois por 'coluna'. Se o "começo" e o "fim" é '1'.
 
 13. Consistência geral ---------------------------------------------------------
 

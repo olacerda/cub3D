@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otlacerd <otlacerd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olacerda <olacerda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 19:53:26 by otlacerd          #+#    #+#             */
-/*   Updated: 2026/04/18 00:29:40 by otlacerd         ###   ########.fr       */
+/*   Updated: 2026/04/18 05:00:16 by olacerda         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -28,6 +28,8 @@
 # define BUFFER_SIZE 25
 # define SUBJECT_ERROR "Error\n"
 # define MAPS_FOLDER "assets/maps/"
+# define MAP_TYPE ".cub"
+# define VALID_CHARACTERS "01NSEW"
 
 typedef unsigned long t_ul;
 
@@ -46,6 +48,17 @@ typedef	struct s_map
 	int		lines;
 	int		columns;
 }				t_map;
+
+typedef struct s_config
+{
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+	char *f;
+	char *c;
+	
+}				t_config;
 
 typedef struct s_all
 {
