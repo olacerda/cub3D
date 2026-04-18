@@ -6,7 +6,7 @@
 /*   By: olacerda <olacerda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 22:17:51 by otlacerd          #+#    #+#             */
-/*   Updated: 2026/04/18 07:22:18 by olacerda         ###   ########.fr       */
+/*   Updated: 2026/04/18 07:36:33 by olacerda         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -55,11 +55,8 @@ int	parse(t_all *all)
 	print_map(all->maps->map);
 	if (!check_close_walls(all->maps->map))
 		end_program("Map is not properly enclosed by walls '1'", 1);
-	// printf("Passou de create_map!!\n");
-	// int	line = 0;
-	// while (all->maps->map[line])
-	// 	printf("%s\n", all->maps->map[line++]);
-	// printf("here5\n");
-	// exit(1);
-	return (1);
+	//if (!check_path)
+	//if (!get_infos)
+	//if (!check_characters) (validos / invalidos, quantidades, etc)
+		return (1);
 }
